@@ -1,0 +1,18 @@
+class Solution {
+    public String dayOfTheWeek(int day,int month,int year) {
+        String[] week={"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+        int[] daysInMonth={31,28,31,30,31,30,31,31,30,31,30,31};
+        int days=0;
+        for(int y=1971;y<year;y++){
+            days+=(y%400==0||(y%4==0&&y%100!=0))?366:365;
+        }
+        if((year%400==0)||(year%4==0&&year%100!=0)){
+            daysInMonth[1]=29;
+        }
+        for(int m=1;m<month;m++){
+            days+=daysInMonth[m-1];
+        }
+        days+=day;
+        return week[(days+4)%7];
+    }
+}
